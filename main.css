@@ -1,0 +1,51 @@
+:root {
+  color-scheme: dark;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f7fbfa;
+  background: #071b18;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --color-background: #071b18;
+  --color-surface: #103a32;
+  --color-surface-border: #1d6356;
+  --color-primary: #57c9b0;
+  --color-primary-bright: #31b99e;
+  --color-text: #f7fbfa;
+  --color-muted: #b9d8d1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 20rem;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  background: var(--color-background);
+}
+
+.page-title {
+  margin: 0 0 0.55rem;
+  color: var(--color-text);
+  font-size: clamp(1.8rem, 7vw, 2.5rem);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
+}
+
+.page-subtitle {
+  max-width: 24rem;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.paragraph {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.5;
+}

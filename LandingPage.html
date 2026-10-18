@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Pre-register visitors and manage secure check-ins with VisiTrack."
+    >
+    <title>VisiTrack | Visitor Check-in</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="LandingPage.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="VisiTrack home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="5" width="16" height="15" rx="3"></rect>
+              <path d="M8 3v4M16 3v4M4 9h16M12 12v5m-2.5-2.5h5"></path>
+              <path d="m16 15 1.5 1.5L20 14"></path>
+            </svg>
+          </span>
+          <span>VisiTrack</span>
+        </a>
+      </header>
+
+      <main>
+        <section class="welcome" aria-labelledby="page-title">
+          <h1 class="page-title" id="page-title">Log In, Check In,<br>Head In.</h1>
+          <p class="page-subtitle">
+            Register before you arrive, walk in faster, and keep every visit on
+            record.
+          </p>
+        </section>
+
+        <section class="visitor-pass" aria-label="Visitor pass example">
+          <div class="pass-heading">
+            <span>Visitor pass</span>
+            <span class="status-pill">Status</span>
+          </div>
+          <div class="pass-code" aria-hidden="true"></div>
+          <div class="pass-details">
+            <div>
+              <h2 class="pass-name">Juan Dela Cruz</h2>
+              <p class="pass-destination">Visiting: Registrar's Office</p>
+            </div>
+            <span class="pass-check" role="img" aria-label="Checked in">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m5 12 4.5 4.5L19 7"></path>
+              </svg>
+            </span>
+          </div>
+          <p class="pass-time">Today, 10:30 AM</p>
+        </section>
+
+<!-- Buttons for pre-registration, admin log-in, and security log-in -->
+        <nav class="action-list" aria-label="VisiTrack services">
+          <a class="action-card action-card-primary" href="#visitor-pre-registration"> <!--replace with actual page link-->
+            <span class="action-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M16 20v-1.5a4.5 4.5 0 0 0-4.5-4.5h-3A4.5 4.5 0 0 0 4 18.5V20"></path>
+                <circle cx="10" cy="7" r="4"></circle>
+                <path d="M19 8v6m-3-3h6"></path>
+              </svg>
+            </span>
+            <span class="action-copy">
+              <span class="action-title">Visitor pre-registration</span>
+              <span class="action-description">Register before arriving</span>
+            </span>
+          </a>
+
+          <a class="action-card" href="#admin-log-in"> <!--replace with actual page link-->
+            <span class="action-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 1 1 8 0v3"></path>
+              </svg>
+            </span>
+            <span class="action-copy">
+              <span class="action-title">Admin log-in</span>
+              <span class="action-description">Manage visitors and reports</span>
+            </span>
+          </a>
+
+          <a class="action-card" href="#security-log-in"> <!--replace with actual page link-->
+            <span class="action-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6l8-3Z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </span>
+            <span class="action-copy">
+              <span class="action-title">Security log-in</span>
+              <span class="action-description">Check visitors in and out</span>
+            </span>
+          </a>
+        </nav>
+      </main>
+
+      <footer class="site-footer">
+        <p>Need help? Ask the front desk when you arrive.</p>
+      </footer>
+    </div>
+    <!--to allow offline caching & use-->
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js").catch((error) => {
+            console.error("VisiTrack service worker registration failed:", error);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
