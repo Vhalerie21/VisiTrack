@@ -1,0 +1,219 @@
+* {
+  box-sizing: border-box;
+}
+
+.login-shell {
+  display: flex;
+  max-width: 30rem;
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  margin-inline: auto;
+  padding: max(1rem, env(safe-area-inset-top))
+    clamp(1rem, 6vw, 2.25rem)
+    max(1rem, env(safe-area-inset-bottom));
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.back-link {
+  display: grid;
+  flex: 0 0 2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--color-surface-border);
+  border-radius: 0.55rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.back-link svg {
+  width: 1.25rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.login-header .brand-mark {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.login-header .brand-mark svg {
+  width: 1.3rem;
+}
+
+.login-main {
+  display: block;
+}
+
+.login-welcome {
+  margin: 0 0 0.6rem;
+}
+
+.login-welcome .page-title {
+  margin-bottom: 0.35rem;
+  font-size: clamp(1.2rem, 6vw, 1.5rem);
+  letter-spacing: -0.025em;
+}
+
+.login-welcome .page-subtitle {
+  font-size: 0.65rem;
+}
+
+.role-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+  margin-bottom: 2.5rem;
+  padding: 0.25rem;
+  border: 1px solid var(--color-surface-border);
+  border-radius: 0.55rem;
+  background: var(--color-surface);
+}
+
+.role-tab {
+  display: flex;
+  min-height: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.4rem;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.role-tab svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.role-tab.is-active {
+  background: #0a2923;
+  color: var(--color-primary);
+}
+
+.login-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.login-field {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.login-field input {
+  min-width: 0;
+  min-height: 1.9rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid var(--color-surface-border);
+  border-radius: 0.55rem;
+  background: #0c3028;
+  color: var(--color-text);
+  font: inherit;
+}
+
+.login-field input:focus-visible {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.1rem;
+  font-size: 0.7rem;
+}
+
+.remember-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-text);
+}
+
+.remember-option input {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: var(--color-primary-bright);
+}
+
+.forgot-link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.login-submit {
+  min-height: 2.75rem;
+  margin-top: 2.5rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: #8bd8c9;
+  color: #09231e;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.login-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 0.65rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.58rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.login-notice svg {
+  width: 0.9rem;
+  flex: 0 0 auto;
+  stroke: var(--color-primary);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.login-header a:focus-visible,
+.role-tab:focus-visible,
+.forgot-link:focus-visible,
+.login-submit:focus-visible {
+  outline: 3px solid #f5d64e;
+  outline-offset: 3px;
+}
+
+@media (max-width: 22rem) {
+  .login-shell {
+    padding-inline: 1rem;
+  }
+
+  .role-tabs {
+    margin-bottom: 2.6rem;
+  }
+
+  .login-submit {
+    margin-top: 2rem;
+  }
+}

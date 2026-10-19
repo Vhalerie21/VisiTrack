@@ -1,8 +1,10 @@
-const CACHE_NAME = "visitrack-shell-v2";
+const CACHE_NAME = "visitrack-shell-v3";
 const APP_SHELL = [
   new URL("./LandingPage.html", self.registration.scope).href,
+  new URL("./LoginPage.html", self.registration.scope).href,
   new URL("./main.css", self.registration.scope).href,
   new URL("./LandingPage.css", self.registration.scope).href,
+  new URL("./LoginPage.css", self.registration.scope).href,
 ];
 const APP_SHELL_URLS = new Set(APP_SHELL);
 
@@ -39,8 +41,11 @@ self.addEventListener("fetch", (event) => {
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request).catch(async () => {
+        const page = requestUrl.pathname.endsWith("/LoginPage.html")
+          ? "./LoginPage.html"
+          : "./LandingPage.html";
         const cachedPage = await caches.match(
-          new URL("./LandingPage.html", self.registration.scope).href
+          new URL(page, self.registration.scope).href
         );
         if (cachedPage) {
           return cachedPage;

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Sign in to VisiTrack as an administrator or security staff member."
+    >
+    <title>VisiTrack | Staff Log-in</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="LandingPage.css">
+    <link rel="stylesheet" href="LoginPage.css">
+  </head>
+  <body>
+    <div class="login-shell">
+      <header class="login-header">
+        <a class="back-link" href="LandingPage.html" aria-label="Back to home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 5 8 12l7 7M8 12h12"></path>
+          </svg>
+        </a>
+        <a class="brand" href="LandingPage.html" aria-label="VisiTrack home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="5" width="16" height="15" rx="3"></rect>
+              <path d="M8 3v4M16 3v4M4 9h16M12 12v5m-2.5-2.5h5"></path>
+              <path d="m16 15 1.5 1.5L20 14"></path>
+            </svg>
+          </span>
+          <span>VisiTrack</span>
+        </a>
+      </header>
+
+      <main class="login-main">
+        <section class="login-welcome" aria-labelledby="login-title">
+          <h1 class="page-title" id="login-title">Admin Log-in</h1>
+          <p class="page-subtitle" id="login-subtitle">
+            Manage Users, Reports, and Audits.
+          </p>
+        </section>
+
+        <nav class="role-tabs" aria-label="Choose staff log-in">
+          <a class="role-tab" id="admin-tab" href="LoginPage.html?role=admin">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="4" y="10" width="16" height="11" rx="2"></rect>
+              <path d="M8 10V7a4 4 0 1 1 8 0v3"></path>
+            </svg>
+            <span>Admin</span>
+          </a>
+          <a class="role-tab" id="security-tab" href="LoginPage.html?role=security">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6l8-3Z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+            <span>Security</span>
+          </a>
+        </nav>
+
+        <form class="login-form">
+          <label class="login-field">
+            <span id="identity-label">Admin ID or email</span>
+            <input
+              id="identity"
+              name="identity"
+              type="text"
+              autocomplete="username"
+              required
+            >
+          </label>
+
+          <label class="login-field">
+            <span>Password</span>
+            <input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            >
+          </label>
+
+          <div class="login-options">
+            <label class="remember-option">
+              <input type="checkbox" name="remember">
+              <span>Keep me signed in</span>
+            </label>
+            <a class="forgot-link" href="#forgot-password">Forgot password?</a> <!--add forgot-password page once back-end is ready-->
+          </div>
+
+          <button class="login-submit" id="login-submit" type="button">
+            Log in as Admin
+          </button>
+        </form>
+
+        <p class="login-notice">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="5" y="10" width="14" height="11" rx="2"></rect>
+            <path d="M8 10V7a4 4 0 1 1 8 0v3"></path>
+          </svg>
+          <span>For authorized staff only. Activity on this system is recorded.</span>
+        </p>
+      </main>
+    </div>
+
+    <script>
+      const role = new URLSearchParams(window.location.search).get("role");
+      const isSecurity = role === "security";
+      const activeTab = document.getElementById(
+        isSecurity ? "security-tab" : "admin-tab"
+      );
+
+      document.title = `VisiTrack | ${isSecurity ? "Security" : "Admin"} Log-in`;
+      document.getElementById("login-title").textContent =
+        `${isSecurity ? "Security" : "Admin"} Log-in`;
+      document.getElementById("login-subtitle").textContent = isSecurity
+        ? "Check visitors in and out at the gate."
+        : "Manage Users, Reports, and Audits.";
+      document.getElementById("identity-label").textContent =
+        `${isSecurity ? "Security" : "Admin"} ID or email`;
+      document.getElementById("login-submit").textContent =
+        `Log in as ${isSecurity ? "Security" : "Admin"}`;
+      activeTab.classList.add("is-active");
+      activeTab.setAttribute("aria-current", "page");
+    </script>
+  </body>
+</html>
