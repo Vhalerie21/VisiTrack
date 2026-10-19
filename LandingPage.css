@@ -1,12 +1,12 @@
 .page-shell {
   display: flex;
-  box-sizing:border-box;
+  box-sizing: border-box;
   width: min(100%, 30rem);
   min-height: 100vh;
   min-height: 100svh;
   flex-direction: column;
   margin-inline: auto;
-  padding: (1rem, env(safe-area-inset-top))
+  padding: max(1rem, env(safe-area-inset-top))
     clamp(1rem, 6vw, 2.25rem)
     max(1rem, env(safe-area-inset-bottom));
 }
