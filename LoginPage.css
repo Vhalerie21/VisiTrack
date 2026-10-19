@@ -80,7 +80,7 @@
 
 .role-tab {
   display: flex;
-  min-height: 1.25rem;
+  min-height: 2.5rem;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
