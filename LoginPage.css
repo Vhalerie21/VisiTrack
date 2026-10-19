@@ -163,6 +163,12 @@
   text-decoration: none;
 }
 
+.login-error {
+  margin: 0;
+  color: #ffb4ab;
+  font-size: 0.75rem;
+}
+
 .login-submit {
   min-height: 2.75rem;
   margin-top: 2.5rem;

@@ -87,7 +87,8 @@
             <a class="forgot-link" href="#forgot-password">Forgot password?</a> <!--add forgot-password page once back-end is ready-->
           </div>
 
-          <button class="login-submit" id="login-submit" type="button">
+          <p id="login-error" class="login-error" role="alert" hidden></p>
+          <button class="login-submit" id="login-submit" type="submit">
             Log in as Admin
           </button>
         </form>
@@ -103,11 +104,19 @@
     </div>
 
     <script>
+      // Confirm these endpoints with the back-end developer.
+      const API_URL = "/api/admin/login";
+      const REDIRECT_URL = "/admin/dashboard";
+      const USE_MOCK = true;
+
       const role = new URLSearchParams(window.location.search).get("role");
       const isSecurity = role === "security";
       const activeTab = document.getElementById(
         isSecurity ? "security-tab" : "admin-tab"
       );
+      const loginForm = document.querySelector(".login-form");
+      const loginError = document.getElementById("login-error");
+      const loginButton = document.getElementById("login-submit");
 
       document.title = `VisiTrack | ${isSecurity ? "Security" : "Admin"} Log-in`;
       document.getElementById("login-title").textContent =
@@ -117,10 +126,61 @@
         : "Manage Users, Reports, and Audits.";
       document.getElementById("identity-label").textContent =
         `${isSecurity ? "Security" : "Admin"} ID or email`;
-      document.getElementById("login-submit").textContent =
+      loginButton.textContent =
         `Log in as ${isSecurity ? "Security" : "Admin"}`;
+      const defaultButtonText = loginButton.textContent.trim();
       activeTab.classList.add("is-active");
       activeTab.setAttribute("aria-current", "page");
+
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        loginError.hidden = true;
+        loginError.textContent = "";
+        loginButton.disabled = true;
+        loginButton.textContent = "Logging in...";
+
+        try {
+          const credentials = {
+            identity: loginForm.elements.namedItem("identity").value,
+            password: loginForm.elements.namedItem("password").value,
+            remember: loginForm.elements.namedItem("remember").checked,
+          };
+          let response;
+
+          if (USE_MOCK) { //mock login password
+            await new Promise((resolve) => window.setTimeout(resolve, 800));
+            response = {
+              status: credentials.password === "test123" ? 200 : 401,
+            };
+          } else {
+            response = await fetch(API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify(credentials),
+            });
+          }
+
+          if (response.status === 200) {
+            window.location.assign(REDIRECT_URL);
+          } else if (response.status === 401) {
+            loginError.textContent = "Wrong ID/email or password.";
+            loginError.hidden = false;
+          } else if (response.status === 429) {
+            loginError.textContent = "Too many attempts. Try again later.";
+            loginError.hidden = false;
+          } else {
+            loginError.textContent = "Something went wrong. Please try again.";
+            loginError.hidden = false;
+          }
+        } catch {
+          loginError.textContent = "Something went wrong. Please try again.";
+          loginError.hidden = false;
+        } finally {
+          loginButton.disabled = false;
+          loginButton.textContent = defaultButtonText;
+        }
+      });
     </script>
   </body>
 </html>
