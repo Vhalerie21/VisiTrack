@@ -11,37 +11,6 @@
     max(1rem, env(safe-area-inset-bottom));
 }
 
-.site-header {
-  margin-bottom: 1.4rem;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--color-text);
-  font-size: 1.05rem;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.brand-mark {
-  display: grid;
-  width: 2.05rem;
-  height: 2.05rem;
-  place-items: center;
-  border-radius: 0.55rem;
-  background: var(--color-primary-bright);
-}
-
-.brand-mark svg {
-  width: 1.45rem;
-  stroke: white;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
-}
-
 .welcome {
   margin-bottom: 1.35rem;
 }
@@ -296,10 +265,6 @@
     padding: 2rem clamp(3rem, 8vw, 7rem);
   }
 
-  .site-header {
-    margin-bottom: clamp(3rem, 8vh, 6rem);
-  }
-
   main {
     grid-template-areas:
       "welcome pass"
@@ -313,16 +278,6 @@
   .welcome {
     grid-area: welcome;
     margin: 0;
-  }
-
-  .page-title {
-    max-width: 10ch;
-    font-size: clamp(3rem, 5vw, 4.5rem);
-  }
-
-  .page-subtitle {
-    max-width: 30rem;
-    font-size: 1.05rem;
   }
 
   .visitor-pass {

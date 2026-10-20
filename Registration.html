@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Register before your visit to campus and get a visitor reference number."
+    >
+    <title>VisiTrack | Visitor Registration</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="Registration.css">
+  </head>
+  <body>
+    <div class="registration-shell">
+      <header class="registration-header">
+        <a class="back-link" href="index.html" aria-label="Back to home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 5 8 12l7 7M8 12h12"></path>
+          </svg>
+        </a>
+        <a class="brand" href="index.html" aria-label="VisiTrack home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <rect x="6" y="8" width="34" height="31" rx="5"></rect>
+              <path d="M15 5v8M31 5v8M6 17h34"></path>
+              <circle cx="32" cy="32" r="10" fill="#31b99e"></circle>
+              <path d="M32 27v5l3.5 2.5"></path>
+            </svg>
+          </span>
+          <span>VisiTrack</span>
+        </a>
+      </header>
+
+      <main class="registration-main">
+        <section class="registration-intro" aria-labelledby="registration-title">
+          <h1 class="page-title" id="registration-title">Registration Form</h1>
+          <p class="page-subtitle">
+            Enter your details before arriving. You’ll receive a reference number
+            for check-in.
+          </p>
+        </section>
+
+        <form class="registration-form" id="registration-form">
+          <div class="form-fields">
+            <label class="form-field" for="first-name">
+              <span>First name<span aria-hidden="true">*</span></span>
+              <input
+                id="first-name"
+                name="firstName"
+                type="text"
+                autocomplete="given-name"
+                placeholder="(e.g., John Doe)"
+                required
+              >
+            </label>
+
+            <label class="form-field" for="last-name">
+              <span>Last name<span aria-hidden="true">*</span></span>
+              <input
+                id="last-name"
+                name="lastName"
+                type="text"
+                autocomplete="family-name"
+                placeholder="(e.g., Dela Cruz)"
+                required
+              >
+            </label>
+
+            <label class="form-field" for="middle-name">
+              <span>Middle name</span>
+              <input
+                id="middle-name"
+                name="middleName"
+                type="text"
+                autocomplete="additional-name"
+                placeholder="Optional"
+              >
+            </label>
+
+            <label class="form-field" for="suffix">
+              <span>Suffix</span>
+              <input id="suffix" name="suffix" type="text" placeholder="Optional">
+            </label>
+
+            <label class="form-field" for="contact-number">
+              <span>Contact number<span aria-hidden="true">*</span></span>
+              <input
+                id="contact-number"
+                name="contactNumber"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]+"
+                autocomplete="tel"
+                placeholder="09XXXXXXXXX"
+                required
+              >
+            </label>
+
+            <label class="form-field" for="city-address">
+              <span>City address<span aria-hidden="true">*</span></span>
+              <input
+                id="city-address"
+                name="cityAddress"
+                type="text"
+                autocomplete="address-level2"
+                placeholder="(e.g., Manila)"
+                required
+              >
+            </label>
+          </div>
+
+          <!-- Edit the options in these selects to customize the choices. Keep
+               the Other option (value="Other") to allow visitors to type. -->
+          <fieldset class="visit-details">
+            <legend>Visit details</legend>
+            <label class="form-field" for="purpose">
+              <span>Purpose of visit<span aria-hidden="true">*</span></span>
+              <select id="purpose" name="purpose" required>
+                <option value="" selected disabled>Select a purpose</option>
+                <option value="Admission inquiry or application">Admission inquiry or application</option>
+                <option value="Entrance examination">Entrance examination</option>
+                <option value="Enrollment assistance">Enrollment assistance</option>
+                <option value="Document request or submission">Document request or submission</option>
+                <option value="Event or activity">Event or activity</option>
+                <option value="Other">Other...</option>
+              </select>
+              <input
+                class="other-input"
+                id="purpose-other"
+                name="purposeOther"
+                type="text"
+                placeholder="Type your purpose"
+                aria-label="Other purpose of visit"
+                hidden
+              >
+            </label>
+
+            <label class="form-field" for="office">
+              <span>Office to visit<span aria-hidden="true">*</span></span>
+              <select id="office" name="office" required>
+                <option value="" selected disabled>Select an office</option>
+                <option value="Office of the University Registrar (OUR)">Office of the University Registrar (OUR)</option>
+                <option value="Resource Generation Office (RGO) & DOST-SEI Office">Resource Generation Office (RGO) & DOST-SEI Office</option>
+                <option value="Admission Office (AO)">Admission Office(AO)</option>
+                <option value="Office of Student Development and Services (OSDS)">Office of Student Development and Services (OSDS)</option>
+                <option value="Other">Other...</option>
+              </select>
+              <input
+                class="other-input"
+                id="office-other"
+                name="officeOther"
+                type="text"
+                placeholder="Type the office name"
+                aria-label="Other office to visit"
+                hidden
+              >
+            </label>
+          </fieldset>
+
+          <fieldset class="id-details">
+            <legend>ID to present<span aria-hidden="true">*</span></legend>
+            <label class="form-field" for="id-type">
+              <span class="visually-hidden">ID to present</span>
+              <select id="id-type" name="idType" required>
+                <option value="" selected disabled>Select an ID</option>
+                <option value="National ID">National ID</option>
+                <option value="Driver's License">Driver's License</option>
+                <option value="Postal ID">Postal ID</option>
+                <option value="School ID">School ID</option>
+                <option value="Other">Other...</option>
+              </select>
+              <input
+                class="other-input"
+                id="id-type-other"
+                name="idTypeOther"
+                type="text"
+                placeholder="Type the ID you'll present"
+                aria-label="Other ID to present"
+                hidden
+              >
+            </label>
+          </fieldset>
+
+          <!-- Hi bes, change this link to the actual reference page when it is ready. -->
+          <a
+            class="registration-submit"
+            id="reference-link"
+            href="ReferenceNumber.html"
+          >Get Reference No.</a>
+        </form>
+
+        <section class="info-card next-steps" aria-labelledby="next-steps-title">
+          <h2 id="next-steps-title">What happens next</h2>
+          <ol>
+            <li>
+              <span class="step-number" aria-hidden="true">1</span>
+              <span><strong>Submit your registration</strong><small>Check your details before sending.</small></span>
+            </li>
+            <li>
+              <span class="step-number" aria-hidden="true">2</span>
+              <span><strong>Save your reference number</strong><small>You’ll need it when you arrive.</small></span>
+            </li>
+            <li>
+              <span class="step-number" aria-hidden="true">3</span>
+              <span><strong>Check in at the entrance</strong><small>Show your reference number and ID to security.</small></span>
+            </li>
+          </ol>
+        </section>
+
+        <aside class="info-card privacy-notice" aria-labelledby="privacy-title">
+          <h2 id="privacy-title">Privacy notice</h2>
+          <p>
+            Your information will be used to process and document your campus
+            visit. Access is limited to authorized personnel.
+          </p>
+          <p class="demo-note">
+            This page is a front-end demo; your information is not sent or saved.
+          </p>
+          <a href="PrivacyNotice.html">Read the full privacy notice</a>
+        </aside>
+      </main>
+    </div>
+
+    <script>
+      const registrationForm = document.getElementById("registration-form");
+      const contactNumber = document.getElementById("contact-number");
+      const referenceLink = document.getElementById("reference-link");
+      const otherFields = [
+        ["purpose", "purpose-other"],
+        ["office", "office-other"],
+        ["id-type", "id-type-other"],
+      ];
+
+      for (const [selectId, inputId] of otherFields) {
+        const select = document.getElementById(selectId);
+        const input = document.getElementById(inputId);
+
+        select.addEventListener("change", () => {
+          const isOther = select.value === "Other";
+          input.hidden = !isOther;
+          input.required = isOther;
+          if (!isOther) input.value = "";
+        });
+      }
+
+      contactNumber.addEventListener("input", () => {
+        contactNumber.value = contactNumber.value.replace(/[^0-9]/g, "");
+      });
+
+      referenceLink.addEventListener("click", (event) => {
+        if (!registrationForm.reportValidity()) {
+          event.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

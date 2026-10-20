@@ -1,10 +1,14 @@
-const CACHE_NAME = "visitrack-shell-v4";
+const CACHE_NAME = "visitrack-shell-v6";
 const APP_SHELL = [
   new URL("./index.html", self.registration.scope).href,
   new URL("./LoginPage.html", self.registration.scope).href,
+  new URL("./Registration.html", self.registration.scope).href,
+  new URL("./PrivacyNotice.html", self.registration.scope).href,
   new URL("./main.css", self.registration.scope).href,
   new URL("./index.css", self.registration.scope).href,
   new URL("./LoginPage.css", self.registration.scope).href,
+  new URL("./Registration.css", self.registration.scope).href,
+  new URL("./PrivacyNotice.css", self.registration.scope).href,
 ];
 const APP_SHELL_URLS = new Set(APP_SHELL);
 
@@ -41,9 +45,14 @@ self.addEventListener("fetch", (event) => {
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request).catch(async () => {
-        const page = requestUrl.pathname.endsWith("/LoginPage.html")
-          ? "./LoginPage.html"
-          : "./index.html";
+        let page = "./index.html";
+        if (requestUrl.pathname.endsWith("/LoginPage.html")) {
+          page = "./LoginPage.html";
+        } else if (requestUrl.pathname.endsWith("/Registration.html")) {
+          page = "./Registration.html";
+        } else if (requestUrl.pathname.endsWith("/PrivacyNotice.html")) {
+          page = "./PrivacyNotice.html";
+        }
         const cachedPage = await caches.match(
           new URL(page, self.registration.scope).href
         );

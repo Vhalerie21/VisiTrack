@@ -4,7 +4,7 @@
 
 .login-shell {
   display: flex;
-  max-width: 30rem;
+  width: min(100%, 36rem);
   min-height: 100vh;
   min-height: 100svh;
   flex-direction: column;
@@ -14,64 +14,28 @@
     max(1rem, env(safe-area-inset-bottom));
 }
 
-.login-header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-}
-
-.back-link {
-  display: grid;
-  flex: 0 0 2rem;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid var(--color-surface-border);
-  border-radius: 0.55rem;
-  background: var(--color-surface);
-  color: var(--color-text);
-}
-
-.back-link svg {
-  width: 1.25rem;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2;
-}
-
-.login-header .brand-mark {
-  width: 1.8rem;
-  height: 1.8rem;
-}
-
-.login-header .brand-mark svg {
-  width: 1.3rem;
-}
-
 .login-main {
   display: block;
 }
 
 .login-welcome {
-  margin: 0 0 0.6rem;
+  margin: 0 0 1.25rem;
 }
 
 .login-welcome .page-title {
-  margin-bottom: 0.35rem;
-  font-size: clamp(1.2rem, 6vw, 1.5rem);
-  letter-spacing: -0.025em;
+  margin-bottom: 0.55rem;
+  letter-spacing: -0.035em;
 }
 
 .login-welcome .page-subtitle {
-  font-size: 0.65rem;
+  line-height: 1.45;
 }
 
 .role-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.25rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   padding: 0.25rem;
   border: 1px solid var(--color-surface-border);
   border-radius: 0.55rem;
@@ -86,7 +50,7 @@
   gap: 0.4rem;
   border-radius: 0.4rem;
   color: var(--color-muted);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -114,14 +78,14 @@
   display: grid;
   gap: 0.45rem;
   color: var(--color-text);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-weight: 700;
 }
 
 .login-field input {
   min-width: 0;
-  min-height: 1.9rem;
-  padding: 0.5rem 0.7rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.75rem;
   border: 1px solid var(--color-surface-border);
   border-radius: 0.55rem;
   background: #0c3028;
@@ -141,7 +105,7 @@
   justify-content: space-between;
   gap: 0.75rem;
   margin-top: 0.1rem;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
 }
 
 .remember-option {
@@ -166,18 +130,18 @@
 .login-error {
   margin: 0;
   color: #ffb4ab;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 }
 
 .login-submit {
-  min-height: 2.75rem;
-  margin-top: 2.5rem;
+  min-height: 3rem;
+  margin-top: 1.25rem;
   border: 0;
   border-radius: 0.55rem;
   background: #8bd8c9;
   color: #09231e;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 700;
 }
 
@@ -185,21 +149,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  margin: 0.65rem 0 0;
+  gap: 0.3rem;
+  margin: 1.35rem auto 0;
   color: var(--color-muted);
-  font-size: 0.58rem;
-  line-height: 1.4;
+  font-size: 0.75rem;
+  line-height: 1.5;
   text-align: center;
 }
 
+.login-notice span {
+  max-width: 28rem;
+}
+
 .login-notice svg {
-  width: 0.9rem;
+  width: 1rem;
   flex: 0 0 auto;
   stroke: var(--color-primary);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2;
+  transform: translateY(-0.04rem);
 }
 
 .login-header a:focus-visible,
@@ -216,10 +185,61 @@
   }
 
   .role-tabs {
-    margin-bottom: 2.6rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .login-shell {
+    padding: 2rem clamp(2rem, 7vw, 3.5rem);
+  }
+
+  .login-welcome {
+    margin-bottom: 1.75rem;
+  }
+
+  .role-tabs {
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+    padding: 0.3rem;
+  }
+
+  .role-tab {
+    min-height: 3rem;
+    font-size: 1rem;
+  }
+
+  .login-form {
+    gap: 1.25rem;
+  }
+
+  .login-field {
+    gap: 0.45rem;
+    font-size: 0.9rem;
+  }
+
+  .login-field input {
+    min-height: 2.75rem;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .login-options,
+  .login-error {
+    font-size: 0.95rem;
   }
 
   .login-submit {
-    margin-top: 2rem;
+    min-height: 3.25rem;
+    font-size: 1rem;
+  }
+
+  .login-notice {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  .login-notice svg {
+    width: 1.05rem;
   }
 }
