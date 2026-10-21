@@ -40,8 +40,10 @@
             for check-in.
           </p>
         </section>
-
-        <form class="registration-form" id="registration-form">
+        <!--
+          CHANGED: added action="register.php" and method="POST".
+        -->
+        <form class="registration-form" id="registration-form" action = "Registration.php" method = "POST">
           <div class="form-fields">
             <label class="form-field" for="first-name">
               <span>First name<span aria-hidden="true">*</span></span>
@@ -182,12 +184,8 @@
             </label>
           </fieldset>
 
-          <!-- Hi bes, change this link to the actual reference page when it is ready. -->
-          <a
-            class="registration-submit"
-            id="reference-link"
-            href="ReferenceNumber.html"
-          >Get Reference No.</a>
+          <!-- Hi bes, change this link to the actual reference page when it is ready. ginawa ko nang button -caleb-->
+          <button class="registration-submit" type="submit">Get Reference No.</button>
         </form>
 
         <section class="info-card next-steps" aria-labelledby="next-steps-title">
@@ -214,24 +212,21 @@
             Your information will be used to process and document your campus
             visit. Access is limited to authorized personnel.
           </p>
-          <p class="demo-note">
-            This page is a front-end demo; your information is not sent or saved.
-          </p>
+          <!-- CHANGED: removed the "front-end demo" note, since data is now saved. -->
           <a href="PrivacyNotice.html">Read the full privacy notice</a>
         </aside>
       </main>
     </div>
 
     <script>
-      const registrationForm = document.getElementById("registration-form");
       const contactNumber = document.getElementById("contact-number");
-      const referenceLink = document.getElementById("reference-link");
       const otherFields = [
         ["purpose", "purpose-other"],
         ["office", "office-other"],
         ["id-type", "id-type-other"],
       ];
 
+      // Show a text box when "Other..." is chosen
       for (const [selectId, inputId] of otherFields) {
         const select = document.getElementById(selectId);
         const input = document.getElementById(inputId);
@@ -244,15 +239,13 @@
         });
       }
 
+      // Digits only in the contact number
       contactNumber.addEventListener("input", () => {
         contactNumber.value = contactNumber.value.replace(/[^0-9]/g, "");
       });
 
-      referenceLink.addEventListener("click", (event) => {
-        if (!registrationForm.reportValidity()) {
-          event.preventDefault();
-        }
-      });
+      // CHANGED: removed the old click handler for the reference link.
+      // The form now submits normally to register.php.
     </script>
   </body>
 </html>

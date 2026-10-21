@@ -146,22 +146,10 @@
   clip-path: inset(50%);
 }
 
-.registration-submit {
-  display: inline-flex;
-  align-items: center;
-  justify-self: center;
-  min-height: 2.35rem;
-  margin-top: 0.2rem;
-  padding: 0.55rem 1rem;
+button.registration-submit {
   border: 0;
-  border-radius: 0.55rem;
-  background: var(--color-primary);
-  color: #09231e;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
   cursor: pointer;
-  text-decoration: none;
+  font: inherit;
 }
 
 .registration-submit:hover {
