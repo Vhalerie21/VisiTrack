@@ -1,0 +1,227 @@
+.vt-admin-card > .vt-admin-select {
+  display:block;
+  width:122px;
+  margin:-42px 0 20px auto
+}
+.vt-admin-report-stat {
+  background:var(--inset);
+  border:0;
+  border-radius:14px;
+  min-height:85px;
+  padding:14px 16px;
+}
+.vt-admin-report-stat strong {
+  display:block;
+  font-size:28px;
+  line-height:1;
+  margin-bottom:8px;
+}
+.vt-admin-scroll-section {
+  max-height:360px;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:var(--border) transparent;
+}
+.vt-admin-slot-grid {
+  display:grid;
+  grid-template-columns:repeat(6,minmax(80px,1fr));
+  gap:10px;
+  max-width:610px;
+  margin-top:4px
+}
+.vt-admin-slot {
+  min-height:49px;
+  border:1px solid var(--teal);
+  background:transparent;
+  color:var(--teal);
+  border-radius:15px;
+  font-weight:800;
+  font-size:13px
+}
+.vt-admin-slot.occupied {
+  border-color:var(--blue);
+  background:#1b4a5d;
+  color:var(--blue)
+}
+.vt-admin-slot.overdue {
+  border-color:var(--red);
+  background:#403932;
+  color:#ff6b5f
+}
+.vt-admin-slot.selected {
+  box-shadow:0 0 0 3px var(--yellow)
+}
+.vt-admin-detail {
+  background:var(--inset);
+  border-radius:15px;
+  padding:14px 16px;
+  margin-top:16px;
+  min-height:48px
+}
+.vt-admin-chart {
+  height:250px;
+  display:flex;
+  align-items:end;
+  gap:10px;
+  border-bottom:2px solid var(--teal);
+  padding:12px 0 22px;
+  margin-top:12px
+}
+.vt-admin-bar {
+  flex:1;
+  background:var(--blue);
+  border-radius:9px 9px 0 0;
+  position:relative;
+  min-width:18px;
+  max-width:48px
+}
+.vt-admin-bar.peak {
+  background:var(--orange)
+}
+.vt-admin-bar span {
+  position:absolute;
+  top:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:11px
+}
+.vt-admin-bar small {
+  position:absolute;
+  top:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%);
+  color:var(--muted);
+  white-space:nowrap
+}
+.vt-admin-modal-backdrop {
+  position:fixed;
+  inset:0;
+  background:#0009;
+  display:grid;
+  place-items:center;
+  z-index:10
+}
+.vt-admin-modal {
+  background:var(--surface);
+  border:2px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+  width:min(560px,calc(100% - 30px))
+}
+.vt-admin-form {
+  display:grid;
+  gap:13px
+}
+.vt-admin-form label {
+  display:grid;
+  gap:5px;
+  font-weight:700
+}
+.vt-admin-form-actions {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap
+}
+.vt-admin-pagination {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:16px;
+  color:var(--muted)
+}
+
+
+.vt-admin-audit-trail .vt-admin-toolbar {
+  justify-content: space-between;
+}
+
+.vt-admin-audit-trail .vt-admin-toolbar .vt-admin-select {
+  width: 102px;
+  margin-left: auto;
+}
+
+.vt-admin-audit-trail .vt-admin-table th:nth-child(1),
+.vt-admin-audit-trail .vt-admin-table td:nth-child(1) {
+  width: 162px;
+  color: var(--muted);
+}
+
+.vt-admin-audit-trail .vt-admin-table th:nth-child(2),
+.vt-admin-audit-trail .vt-admin-table td:nth-child(2) {
+  width: 182px;
+}
+
+.vt-admin-audit-trail .vt-admin-table th:nth-child(3),
+.vt-admin-audit-trail .vt-admin-table td:nth-child(3) {
+  width: 112px;
+}
+
+.vt-admin-audit-trail .vt-admin-table th:nth-child(4),
+.vt-admin-audit-trail .vt-admin-table td:nth-child(4) {
+  width: 202px;
+  font-weight: 800;
+}
+
+.vt-admin-audit-trail .vt-admin-table td {
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+
+.vt-admin-settings {
+  min-height: 553px;
+}
+
+.vt-admin-settings .vt-admin-form {
+  width: 430px;
+  gap: 13px;
+}
+
+.vt-admin-settings .vt-admin-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 27px;
+  font-weight: 500;
+}
+
+.vt-admin-settings .vt-admin-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--teal);
+}
+
+.vt-admin-settings .vt-admin-btn-primary {
+  margin-top: 30px;
+}
+
+.vt-admin-field-error {
+  color: #ff8a7e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.vt-admin-input[aria-invalid="true"] {
+  border-color: var(--red);
+}
+
+.vt-admin-btn.is-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.vt-admin-btn.is-loading::after {
+  content: "";
+  width: 13px;
+  height: 13px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: vt-admin-spin .7s linear infinite;
+}
+
+@keyframes vt-admin-spin {
+  to { transform: rotate(360deg); }
+}

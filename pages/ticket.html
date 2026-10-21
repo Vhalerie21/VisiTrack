@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Your VisiTrack visitor pass for Pamantasan ng Lungsod ng Maynila."
+    />
+    <title>Visitor pass | VisiTrack</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../css/ticket.css" />
+    <script src="../js/ticket.js" defer></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="site-header" aria-label="VisiTrack">
+        <span class="brand-mark" aria-hidden="true">
+          <svg
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="#f1fffa"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="64" height="64" rx="14" fill="#39c5a5" stroke="none" />
+            <rect x="14" y="19" width="32" height="30" rx="5" />
+            <path d="M24 13v9M36 13v9M14 29h32" />
+            <path d="M22 37h4M22 43h4" />
+            <circle cx="44" cy="44" r="10" fill="#39c5a5" />
+            <path d="M44 38.5V44l3.5 2.5" stroke-width="2.5" />
+          </svg>
+        </span>
+
+        <span class="brand-name">VisiTrack</span>
+      </header>
+
+      <main>
+        <section class="ticket-intro" aria-labelledby="page-title">
+          <h1 id="page-title">
+            Welcome to<br />
+            Pamantasan ng<br />
+            Lungsod ng Maynila!
+          </h1>
+
+          <article class="ticket" aria-label="Visitor pass">
+            <div class="ticket__header">
+              <span class="ticket__label">Visitor pass</span>
+
+              <span
+                class="ticket__status ticket__status--checked-in"
+                data-ticket-status
+                aria-live="polite"
+              >
+                Checked-in
+              </span>
+            </div>
+
+            <div class="ticket__divider" aria-hidden="true"></div>
+
+            <div class="ticket__details">
+              <p class="ticket__name" data-ticket-name>—</p>
+
+              <p class="ticket__slot">
+                ID Slot:
+                <strong data-ticket-slot>—</strong>
+              </p>
+            </div>
+          </article>
+
+          <p class="ticket-instruction">
+            Show this visitor pass to the desk staff before exiting to reclaim your ID.
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
