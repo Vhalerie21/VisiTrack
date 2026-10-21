@@ -96,17 +96,19 @@ self.addEventListener("fetch", (event) => {
   }
 
   event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      return fetch(request).then((response) => {
+    fetch(request)
+      .then((response) => {
         if (!request.destination) {
           return response;
         }
         return cacheResponse(request, response);
-      });
-    })
+      })
+      .catch(async () => {
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+        throw new Error(`No cached response is available for ${requestUrl.pathname}.`);
+      })
   );
 });

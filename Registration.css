@@ -75,7 +75,7 @@
   background-color: #91ddce;
   color: #123a33;
   font: inherit;
-  font-size: inherit;
+  font-size: 0.85rem;
   font-weight: 400;
 }
 
@@ -273,10 +273,6 @@
 
   .form-fields {
     gap: 0.8rem;
-  }
-
-  .form-field {
-    font-size: 0.9rem;
   }
 
   .form-field input,
