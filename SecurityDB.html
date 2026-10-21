@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Review visitor requests, manage storage slots, and view security logs."
+    >
+    <title>VisiTrack | Security Dashboard</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="SecurityDB.css">
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <header class="dashboard-header">
+        <a class="dashboard-brand" href="index.html" aria-label="VisiTrack home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <rect x="6" y="8" width="34" height="31" rx="5"></rect>
+              <path d="M15 5v8M31 5v8M6 17h34"></path>
+              <circle cx="32" cy="32" r="10" fill="#31b99e"></circle>
+              <path d="M32 27v5l3.5 2.5"></path>
+            </svg>
+          </span>
+          <span class="dashboard-brand-name">VisiTrack</span>
+        </a>
+        <span class="dashboard-label">Guard Dashboard</span>
+        <p class="guard-identity">
+          <span class="online-indicator" aria-hidden="true"></span>
+          <span>Guard, R. Ramos | Main Gate</span> <!-- change code once database integrated-->
+        </p>
+      </header>
+
+      <div class="dashboard-layout">
+        <aside class="dashboard-sidebar" aria-label="Security dashboard navigation">
+          <nav class="dashboard-nav" aria-label="Dashboard sections">
+            <button class="nav-link is-active" type="button" data-view="time-in" aria-current="page">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M16 20v-1.5a4.5 4.5 0 0 0-4.5-4.5h-3A4.5 4.5 0 0 0 4 18.5V20"></path>
+                <circle cx="10" cy="7" r="4"></circle>
+                <path d="M19 8v6m-3-3h6"></path>
+              </svg>
+              <span>Time-in Requests</span>
+            </button>
+            <button class="nav-link" type="button" data-view="time-out">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect>
+                <rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect>
+                <rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect>
+                <rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect>
+              </svg>
+              <span>Time-out Visitors</span>
+            </button>
+            <button class="nav-link" type="button" data-view="storage">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="7" height="7" rx="1.5"></rect>
+                <rect x="13.5" y="3.5" width="7" height="7" rx="1.5"></rect>
+                <rect x="3.5" y="13.5" width="7" height="7" rx="1.5"></rect>
+                <rect x="13.5" y="13.5" width="7" height="7" rx="1.5"></rect>
+              </svg>
+              <span>Storage Slots</span>
+            </button>
+            <button class="nav-link" type="button" data-view="logs">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 3.5h8l5 5V20a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 6 20V3.5Z"></path>
+                <path d="M14 3.5V9h5M9 13h6m-6 3.5h6"></path>
+              </svg>
+              <span>Visitor Logs <span class="nav-note">(view only)</span></span>
+            </button>
+          </nav>
+
+          <a class="sign-out" href="LoginPage.html?role=security">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M10 17l5-5-5-5m5 5H3"></path>
+              <path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path>
+            </svg>
+            <span>Sign-out</span>
+          </a>
+        </aside>
+
+        <main class="dashboard-main">
+          <section class="metric-grid" aria-label="Visitor overview">
+            <article class="metric-card metric-card-live">
+              <h2>Live on-campus count</h2>
+              <p class="metric-value" id="live-count" aria-live="polite">42</p>
+              <p class="metric-description">visitors currently inside</p>
+            </article>
+            <article class="metric-card metric-card-pending">
+              <h2>Pending time-in requests</h2>
+              <p class="metric-value" id="pending-count" aria-live="polite">2</p>
+              <p class="metric-description">awaiting guard review</p>
+            </article>
+            <article class="metric-card metric-card-ids">
+              <h2>Uncollected IDs</h2>
+              <p class="metric-value">3</p>
+              <p class="metric-description">past pickup / flagged</p>
+            </article>
+          </section>
+
+          <p class="dashboard-feedback" id="dashboard-feedback" role="status" aria-live="polite" hidden></p>
+
+          <section class="dashboard-panel" id="view-time-in" data-panel="time-in" aria-labelledby="time-in-title">
+            <div class="panel-heading">
+              <h1 class="panel-title" id="time-in-title">Pending time-in requests</h1>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Reference No.</th>
+                    <th scope="col">Visitor</th>
+                    <th scope="col">Office to Visit</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="time-in-rows"></tbody>
+              </table>
+            </div>
+            <p class="panel-note">
+              Review visitor details and ID. Accepting a request assigns an available storage slot.
+            </p>
+          </section>
+
+          <section class="dashboard-panel" id="view-time-out" data-panel="time-out" aria-labelledby="time-out-title" hidden>
+            <div class="panel-heading">
+              <h1 class="panel-title" id="time-out-title">Time-out visitors</h1>
+              <label class="search-field">
+                <span class="visually-hidden">Search time-out visitors</span>
+                <input id="time-out-search" type="search" placeholder="Search name, reference or slot">
+              </label>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Reference No.</th>
+                    <th scope="col">Visitor</th>
+                    <th scope="col">Slot</th>
+                    <th scope="col">Time-in</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="time-out-rows"></tbody>
+              </table>
+            </div>
+            <p class="panel-note">
+              Confirm the visitor's ID has been returned. Completing time-out frees the storage slot.
+            </p>
+          </section>
+
+          <section class="dashboard-panel storage-panel" id="view-storage" data-panel="storage" aria-labelledby="storage-title" hidden>
+            <div class="panel-heading">
+              <h1 class="panel-title" id="storage-title">Storage slot status</h1>
+            </div>
+            <p class="panel-instructions">Select an occupied slot to view its visitor and time them out.</p>
+            <div class="slot-legend" aria-label="Slot status legend">
+              <span><i class="legend-swatch vacant" aria-hidden="true"></i>Vacant</span>
+              <span><i class="legend-swatch occupied" aria-hidden="true"></i>Occupied</span>
+            </div>
+            <div class="slot-grid" id="slot-grid" aria-label="Storage slots"></div>
+            <div class="slot-details" id="slot-details" aria-live="polite">
+              <span>Select a slot to see who is using it.</span>
+            </div>
+          </section>
+
+          <section class="dashboard-panel" id="view-logs" data-panel="logs" aria-labelledby="logs-title" hidden>
+            <div class="panel-heading">
+              <h1 class="panel-title" id="logs-title">Visitor logs <span class="view-only-tag">view only</span></h1>
+              <label class="search-field">
+                <span class="visually-hidden">Search visitor logs</span>
+                <input id="logs-search" type="search" placeholder="Search name, reference or slot">
+              </label>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Visitor</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Slot</th>
+                    <th scope="col">Time</th>
+                  </tr>
+                </thead>
+                <tbody id="log-rows"></tbody>
+              </table>
+            </div>
+            <p class="panel-note">Visitor logs are read-only. Search to find a visitor, reference, or slot.</p>
+          </section>
+
+          <p class="demo-note">Demo mode: dashboard changes are temporary and reset when the page reloads.</p>
+        </main>
+      </div>
+    </div>
+
+    <script src="SecurityDB.js" defer></script>
+  </body>
+</html>

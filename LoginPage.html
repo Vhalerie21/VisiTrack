@@ -107,11 +107,11 @@
     <script>
       // Confirm these endpoints with the back-end developer.
       const API_URL = "/api/admin/login";
-      const REDIRECT_URL = "/admin/dashboard";
       const USE_MOCK = true;
 
       const role = new URLSearchParams(window.location.search).get("role");
       const isSecurity = role === "security";
+      const REDIRECT_URL = isSecurity ? "SecurityDB.html" : "/admin/dashboard";
       const activeTab = document.getElementById(
         isSecurity ? "security-tab" : "admin-tab"
       );

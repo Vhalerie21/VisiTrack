@@ -1,16 +1,39 @@
-const CACHE_NAME = "visitrack-shell-v7";
+const CACHE_NAME = "visitrack-shell-v8";
 const APP_SHELL = [
   new URL("./index.html", self.registration.scope).href,
   new URL("./LoginPage.html", self.registration.scope).href,
   new URL("./Registration.html", self.registration.scope).href,
   new URL("./PrivacyNotice.html", self.registration.scope).href,
+  new URL("./SecurityDB.html", self.registration.scope).href,
   new URL("./main.css", self.registration.scope).href,
   new URL("./index.css", self.registration.scope).href,
   new URL("./LoginPage.css", self.registration.scope).href,
   new URL("./Registration.css", self.registration.scope).href,
   new URL("./PrivacyNotice.css", self.registration.scope).href,
+  new URL("./SecurityDB.css", self.registration.scope).href,
+  new URL("./SecurityDB.js", self.registration.scope).href,
 ];
-const APP_SHELL_URLS = new Set(APP_SHELL);
+const API_PATH_PREFIX = new URL("./api/", self.registration.scope).pathname;
+
+function isCacheableResponse(request, response) {
+  const cacheControl = response.headers.get("Cache-Control") || "";
+  return (
+    request.method === "GET" &&
+    response.status === 200 &&
+    response.type === "basic" &&
+    !request.headers.has("Authorization") &&
+    !/\b(private|no-store)\b/i.test(cacheControl) &&
+    !request.headers.has("Range")
+  );
+}
+
+async function cacheResponse(request, response) {
+  if (isCacheableResponse(request, response)) {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.put(request, response.clone());
+  }
+  return response;
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -42,30 +65,33 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request).catch(async () => {
-        let page = "./index.html";
-        if (requestUrl.pathname.endsWith("/LoginPage.html")) {
-          page = "./LoginPage.html";
-        } else if (requestUrl.pathname.endsWith("/Registration.html")) {
-          page = "./Registration.html";
-        } else if (requestUrl.pathname.endsWith("/PrivacyNotice.html")) {
-          page = "./PrivacyNotice.html";
-        }
-        const cachedPage = await caches.match(
-          new URL(page, self.registration.scope).href
-        );
-        if (cachedPage) {
-          return cachedPage;
-        }
-        throw new Error("No cached VisiTrack page is available offline.");
-      })
-    );
+  if (
+    requestUrl.pathname === API_PATH_PREFIX.slice(0, -1) ||
+    requestUrl.pathname.startsWith(API_PATH_PREFIX)
+  ) {
     return;
   }
 
-  if (!APP_SHELL_URLS.has(requestUrl.href)) {
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then((response) => cacheResponse(request, response))
+        .catch(async () => {
+          const cachedPage = await caches.match(request, { ignoreSearch: true });
+          if (cachedPage) {
+            return cachedPage;
+          }
+
+          const cachedHome = await caches.match(
+            new URL("./index.html", self.registration.scope).href
+          );
+          if (cachedHome) {
+            return cachedHome;
+          }
+
+          throw new Error("No cached VisiTrack page is available offline.");
+        })
+    );
     return;
   }
 
@@ -75,7 +101,12 @@ self.addEventListener("fetch", (event) => {
         return cachedResponse;
       }
 
-      return fetch(request);
+      return fetch(request).then((response) => {
+        if (!request.destination) {
+          return response;
+        }
+        return cacheResponse(request, response);
+      });
     })
   );
 });
