@@ -114,6 +114,20 @@ body {
     margin-bottom: 2rem;
   }
 
+  .brand {
+    gap: 0.6rem;
+    font-size: 1.2rem;
+  }
+
+  .brand-mark {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .brand-mark svg {
+    width: 1.65rem;
+  }
+
   .page-title {
     font-size: 2.75rem;
   }
