@@ -148,7 +148,7 @@
           };
           let response;
 
-          if (USE_MOCK) { //mock login password
+          if (USE_MOCK) { //mock login password to test login page without back-end
             await new Promise((resolve) => window.setTimeout(resolve, 800));
             response = {
               status: credentials.password === "test123" ? 200 : 401,

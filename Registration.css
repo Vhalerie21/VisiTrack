@@ -241,6 +241,18 @@
   text-decoration: underline;
 }
 
+@media (max-width: 38rem) {
+  .registration-header .brand {
+    gap: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  .registration-header .brand-mark {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+}
+
 @media (min-width: 40rem) {
   .registration-shell {
     padding: 1.25rem 1.5rem 2rem;

@@ -1,4 +1,4 @@
-const CACHE_NAME = "visitrack-shell-v8";
+const CACHE_NAME = "visitrack-shell-v9";
 const APP_SHELL = [
   new URL("./index.html", self.registration.scope).href,
   new URL("./LoginPage.html", self.registration.scope).href,
