@@ -173,7 +173,8 @@
 }
 
 .vt-admin-settings .vt-admin-form {
-  width: 430px;
+  max-width: 430px;
+  width: 100%;
   gap: 13px;
 }
 
@@ -225,3 +226,11 @@
 @keyframes vt-admin-spin {
   to { transform: rotate(360deg); }
 }
+
+@media(max-width:480px) {
+  .vt-admin-slot-grid {
+    grid-template-columns:repeat(3,1fr);
+    max-width:100%
+  }
+}
+
