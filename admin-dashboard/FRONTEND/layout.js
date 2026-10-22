@@ -72,7 +72,7 @@
   out.addEventListener("click",async()=> {
     if(confirm("Sign out of VisiTrack?")) {
       await api.signOut();
-      window.location.href="login-placeholder.html"
+      window.location.href="../../LoginPage/Front-End/LoginPage.html?role=admin"
     }
   }  );
   side.append(links,out);

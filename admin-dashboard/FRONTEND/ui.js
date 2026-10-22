@@ -29,7 +29,7 @@
       if (error.status === 401) {
         sessionStorage.clear();
         ui.toast("Session expired", "error");
-        setTimeout(() => { window.location.href = "login-placeholder.html"; }, 500);
+        setTimeout(() => { window.location.href = "../../LoginPage/Front-End/LoginPage.html?role=admin"; }, 500);
       } else if (error.status === 403) ui.toast("You don't have permission", "error");
       else if (error.status === 422) ui.toast("Please correct the highlighted fields.", "error");
       else ui.toast("Something went wrong. Try again.", "error");
