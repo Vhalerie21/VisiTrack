@@ -1,0 +1,231 @@
+:root {
+  --background: #06251f;
+  --ticket: #155447;
+  --note: #147a69;
+  --primary: #8eddd0;
+  --accent: #e6ff38;
+  --text: #f8faf9;
+  --muted: #c2d1cd;
+  --muted-dark: #a9c2bc;
+  --focus: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--background);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.page-shell {
+  width: min(100%, 420px);
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 25px 24px max(36px, env(safe-area-inset-bottom, 36px));
+}
+
+.site-header {
+  margin-bottom: 21px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 44px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.brand-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.confirmation h1 {
+  margin: 0;
+  font-size: clamp(25px, 7vw, 28px);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+
+.intro {
+  margin: 18px 2px 21px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.ticket {
+  position: relative;
+  margin: 0 15px 30px;
+  padding: 15px 11px 17px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--ticket);
+}
+
+.ticket-divider::before,
+.ticket-divider::after {
+  position: absolute;
+  top: 50%;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  background: var(--background);
+  content: "";
+  transform: translateY(-50%);
+}
+
+.ticket-divider::before {
+  left: -33px;
+}
+
+.ticket-divider::after {
+  right: -33px;
+}
+
+.ticket-label {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.reference-number {
+  margin: 0 0 2px;
+  color: var(--accent);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: clamp(27px, 8vw, 31px);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ticket-divider {
+  position: relative;
+  margin: 11px 3px;
+  border-top: 2px dashed rgba(218, 241, 235, 0.55);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px 14px;
+  margin: 0;
+  padding: 0 10px;
+}
+
+.detail dt {
+  margin-bottom: 4px;
+  color: var(--muted-dark);
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.detail dd {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.3;
+}
+
+.button {
+  display: flex;
+  min-height: 52px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: filter 120ms ease;
+}
+
+.button:hover {
+  filter: brightness(1.06);
+}
+
+.button-primary {
+  background: var(--primary);
+  color: #06221d;
+}
+
+.button-secondary {
+  margin-top: 34px;
+  background: #166c5e;
+  color: var(--text);
+}
+
+.next-note {
+  margin: 22px 0 0;
+  padding: 14px 12px 13px;
+  border-radius: 10px;
+  background: var(--note);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.next-note strong {
+  color: var(--text);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 421px) {
+  .page-shell {
+    padding-top: 34px;
+  }
+}

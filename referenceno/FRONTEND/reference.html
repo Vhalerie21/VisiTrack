@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>You're registered | VisiTrack</title>
+    <link rel="stylesheet" href="./reference.css">
+    <script src="./reference.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header" aria-label="VisiTrack">
+        <a class="brand" href="../../../index.html" aria-label="VisiTrack home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Calendar with clock">
+  <rect width="512" height="512" rx="94" fill="#3EBCA2"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="28">
+      <path d="M188 401H157A30 30 0 0 1 127 371V155A30 30 0 0 1 157 125H355A30 30 0 0 1 385 155V187"/>
+      <path d="M127 215H205"/>
+      <path d="M199 109V144M314 109V144"/>
+      <circle cx="314" cy="326" r="75"/>
+    </g>
+    <path stroke-width="22" d="M311 297V323L332 344"/>
+  </g>
+</svg>
+          </span>
+          <span class="brand-name">VisiTrack</span>
+        </a>
+      </header>
+
+      <main>
+        <section class="confirmation" aria-labelledby="page-title">
+          <h1 id="page-title">You're registered.</h1>
+          <p class="intro">Keep this number. You'll enter it at the gate.</p>
+
+          <article class="ticket" aria-label="Registration details">
+            <p class="ticket-label">Reference number</p>
+            <p class="reference-number" id="reference-number">AB-XXXX-XXXX</p>
+            <div class="ticket-divider" aria-hidden="true"></div>
+
+            <dl class="details-grid">
+              <div class="detail">
+                <dt>Visitor</dt>
+                <dd id="visitor-name">John Dela Cruz</dd>
+              </div>
+
+              <div class="detail">
+                <dt>Visit date</dt>
+                <dd id="visit-date">Oct. 12, 2026</dd>
+              </div>
+
+              <div class="detail">
+                <dt>Going to</dt>
+                <dd id="destination">Registrar's Office</dd>
+              </div>
+
+              <div class="detail">
+                <dt>ID to submit</dt>
+                <dd id="id-type">National ID</dd>
+              </div>
+            </dl>
+          </article>
+
+          <button class="button button-primary" id="copy-button" type="button">
+            <span>Copy Reference Number</span>
+          </button>
+
+          <p class="sr-only" id="copy-status" aria-live="polite"></p>
+
+          <p class="next-note">
+            <strong>Next</strong>: scan the QR code at the gate entrance,
+            enter this number, and hand your ID to the desk.
+          </p>
+
+          <a class="button button-secondary" href="../../index.html">
+            Back to Home
+          </a>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

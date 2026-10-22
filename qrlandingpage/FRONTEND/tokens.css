@@ -1,0 +1,30 @@
+:root {
+  --color-page: #062b24;
+  --color-card: #1b5044;
+  --color-ticket: #10483d;
+  --color-input: #062b24;
+  --color-accent: #8db33c;
+  --color-accent-pressed: #7da22f;
+  --color-brand-mark: #39c5a5;
+  --color-text: #f7faf7;
+  --color-muted: #c0d0ca;
+  --color-hint: #c1d2cc;
+  --color-line: #317e6c;
+  --color-error: #ffc6b8;
+  --color-error-surface: #5f302c;
+
+  --font-sans: Arial, Helvetica, sans-serif;
+
+  --radius-card: 10px;
+  --radius-control: 8px;
+  --radius-input: 9px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+}
