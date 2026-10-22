@@ -112,8 +112,8 @@
       const role = new URLSearchParams(window.location.search).get("role");
       const isSecurity = role === "security";
       const REDIRECT_URL = isSecurity
-        ? "SecurityDB.html"
-        : "admin/html/dashboard.html"; 
+        ? "../../SecurityDB/Front-End/SecurityDB.html"
+        : "../../admin-dashboard/FRONTEND/dashboard.html";
       const activeTab = document.getElementById(
         isSecurity ? "security-tab" : "admin-tab"
       );
