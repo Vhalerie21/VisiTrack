@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#062b24" />
+    <title>VisiTrack | Check in</title>
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./checkin.css" />
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="site-header" aria-label="VisiTrack">
+        <a class="brand" href="../../index.html" aria-label="VisiTrack home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Calendar with clock">
+  <rect width="512" height="512" rx="94" fill="#3EBCA2"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="28">
+      <path d="M188 401H157A30 30 0 0 1 127 371V155A30 30 0 0 1 157 125H355A30 30 0 0 1 385 155V187"/>
+      <path d="M127 215H205"/>
+      <path d="M199 109V144M314 109V144"/>
+      <circle cx="314" cy="326" r="75"/>
+    </g>
+    <path stroke-width="22" d="M311 297V323L332 344"/>
+  </g>
+</svg>
+          </span>
+
+          <span class="brand-name">VisiTrack</span>
+        </a>
+      </header>
+
+      <main class="checkin-main">
+        <section class="checkin-card" aria-labelledby="page-title">
+          <div class="intro">
+            <h1 id="page-title">
+              Welcome! Enter your reference number.
+            </h1>
+
+            <p>
+              You got it when you registered. Staff will confirm your check-in.
+            </p>
+          </div>
+
+          <form class="checkin-form" id="checkin-form" novalidate>
+            <div class="ticket-box">
+              <div class="field-group">
+                <label for="reference-number">Reference No.</label>
+
+                <input
+                  id="reference-number"
+                  name="referenceNumber"
+                  type="text"
+                  placeholder="AB-XXXX-XXXX"
+                  maxlength="12"
+                  autocomplete="off"
+                  autocapitalize="characters"
+                  spellcheck="false"
+                  inputmode="text"
+                  aria-describedby="reference-hint form-message"
+                  required
+                />
+
+                <p class="field-hint" id="reference-hint">
+                  Format: AB-XXXX-XXXX
+                </p>
+              </div>
+
+              <div class="ticket-divider" aria-hidden="true"></div>
+
+              <button
+                class="button button--primary"
+                id="submit-button"
+                type="submit"
+              >
+                <span class="button-label">
+                  Send check-in request.
+                </span>
+
+                <span class="button-loading" aria-hidden="true">
+                  Sending...
+                </span>
+              </button>
+
+              <p
+                class="form-message"
+                id="form-message"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+          </form>
+
+          <div class="register-prompt">
+            <div class="section-divider">
+              <span>No reference number?</span>
+            </div>
+
+            <a class="button button--register" href="../../Registration.html">
+              REGISTER NOW
+            </a>
+
+            <p class="helper-text">
+              Takes about a minute. You will get a number right away
+            </p>
+          </div>
+
+          <section
+            class="success-state"
+            id="success-state"
+            hidden
+            aria-live="polite"
+            tabindex="-1"
+          >
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <h2>Time-in request sent</h2>
+            <p>Please wait while staff confirms your check-in.</p>
+
+            <!-- TODO: Connect staff acceptance here, then show ID location and the time-out button. -->
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./checkin.js"></script>
+  </body>
+</html>
