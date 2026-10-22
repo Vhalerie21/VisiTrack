@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=../pages/checkin.html" />
+    <meta http-equiv="refresh" content="0; url=./checkin.html" />
     <title>VisiTrack | Check in</title>
   </head>
   <body>
     <p>Opening VisiTrack check-in...</p>
     <script>
-      const target = new URL("../pages/checkin.html", window.location.href);
+      const target = new URL("./checkin.html", window.location.href);
       target.search = window.location.search;
       window.location.replace(target.href);
     </script>
   </body>
 </html>
+

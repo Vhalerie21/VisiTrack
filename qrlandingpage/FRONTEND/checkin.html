@@ -5,32 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#062b24" />
     <title>VisiTrack | Check in</title>
-    <link rel="stylesheet" href="../css/tokens.css" />
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/checkin.css" />
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./base.css" />
+    <link rel="stylesheet" href="./checkin.css" />
   </head>
 
   <body>
     <div class="page-shell">
       <header class="site-header" aria-label="VisiTrack">
-        <a class="brand" href="../pages/checkin.html" aria-label="VisiTrack home">
+        <a class="brand" href="../../index.html" aria-label="VisiTrack home">
           <span class="brand-mark" aria-hidden="true">
-            <svg
-              viewBox="0 0 64 64"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="#f1fffa"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect width="64" height="64" rx="14" fill="#39c5a5" stroke="none" />
-              <rect x="14" y="19" width="32" height="30" rx="5" />
-              <path d="M24 13v9M36 13v9M14 29h32" />
-              <path d="M22 37h4M22 43h4" />
-              <circle cx="44" cy="44" r="10" fill="#39c5a5" />
-              <path d="M44 38.5V44l3.5 2.5" stroke-width="2.5" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Calendar with clock">
+  <rect width="512" height="512" rx="94" fill="#3EBCA2"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="28">
+      <path d="M188 401H157A30 30 0 0 1 127 371V155A30 30 0 0 1 157 125H355A30 30 0 0 1 385 155V187"/>
+      <path d="M127 215H205"/>
+      <path d="M199 109V144M314 109V144"/>
+      <circle cx="314" cy="326" r="75"/>
+    </g>
+    <path stroke-width="22" d="M311 297V323L332 344"/>
+  </g>
+</svg>
           </span>
 
           <span class="brand-name">VisiTrack</span>
@@ -103,7 +99,9 @@
               <span>No reference number?</span>
             </div>
 
-            <a href="../Registration.html">REGISTER NOW</a>
+            <a class="button button--register" href="../../Registration.html">
+              REGISTER NOW
+            </a>
 
             <p class="helper-text">
               Takes about a minute. You will get a number right away
@@ -127,6 +125,6 @@
       </main>
     </div>
 
-    <script type="module" src="../js/checkin.js"></script>
+    <script type="module" src="./checkin.js"></script>
   </body>
 </html>

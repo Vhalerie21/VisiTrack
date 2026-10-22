@@ -1,8 +1,9 @@
 .page-shell {
   width: min(100%, 360px);
+  min-height: 100vh;
   min-height: 100dvh;
   margin: 0 auto;
-  padding: 18px 26px 22px;
+  padding: 18px 26px max(28px, env(safe-area-inset-bottom, 28px));
 }
 
 .site-header {
@@ -120,7 +121,7 @@
   outline: 0;
   background: var(--color-input);
   color: var(--color-text);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.2px;
   text-transform: uppercase;
@@ -330,12 +331,12 @@
 html,
 body {
   min-width: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .page-shell {
   width: min(100%, 420px);
-  padding: clamp(14px, 5vw, 28px) clamp(16px, 7vw, 26px) 22px;
+  padding: clamp(14px, 5vw, 28px) clamp(16px, 7vw, 26px) max(28px, env(safe-area-inset-bottom, 28px));
 }
 
 .site-header {
@@ -348,8 +349,8 @@ body {
 }
 
 .brand-mark {
-  flex: 0 0 clamp(40px, 17vw, 68px);
-  width: clamp(40px, 17vw, 68px);
+  flex: 0 0 clamp(40px, 15.5vw, 62px);
+  width: clamp(40px, 15.5vw, 62px);
   height: clamp(40px, 15.5vw, 62px);
 }
 
