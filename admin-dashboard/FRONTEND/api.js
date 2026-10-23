@@ -24,6 +24,46 @@
     }    ;
     return e;
   }
+  function getAccounts() {
+    return mock.personnel;
+  }
+  let mockPersonnelId = 0;
+  function addAccount(body = {}) {
+    const account = {
+      name: String(body.name || "").trim(),
+      employeeId: String(body.employeeId || "").trim(),
+      email: String(body.email || "").trim(),
+      role: String(body.role || ""),
+      status: String(body.status || "")
+    };
+    const fields = {};
+    ["name", "employeeId", "email", "role", "status"].forEach(name => {
+      if (!account[name]) fields[name] = "This field is required.";
+    });
+    if (account.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(account.email)) {
+      fields.email = "Enter a valid email address.";
+    }
+    if (!["admin", "guard"].includes(account.role)) fields.role = "Choose a valid role.";
+    if (!["active", "disabled"].includes(account.status)) fields.status = "Choose a valid status.";
+    const accounts = getAccounts();
+    if (accounts.some(item => item.email.toLowerCase() === account.email.toLowerCase())) {
+      fields.email = "An account with this email already exists.";
+    }
+    if (accounts.some(item => item.employeeId.toLowerCase() === account.employeeId.toLowerCase())) {
+      fields.employeeId = "An account with this employee ID already exists.";
+    }
+    if (Object.keys(fields).length) {
+      throw apiError(422, "Please correct the account details.", fields);
+    }
+    const created = {
+      ...account,
+      id: `p-${Date.now()}-${++mockPersonnelId}`,
+      lastLogin: null
+    };
+    // Backend team: replace this mock save with the real create-account API call.
+    accounts.push(created);
+    return clone(created);
+  }
   async function request(method, path, options =  {
   }  , fnName)  {
     if (cfg.SIMULATE_ERRORS) throw apiError(503, "Service temporarily unavailable");
@@ -74,7 +114,7 @@
         ...clone(mock.dashboardStats), peakHours: clone(mock.peakHours), offices: clone(mock.reports.offices)
       }      ;
       case "getAuditTrail": return list(filtered(clone(mock.auditTrail), o), o.query);
-      case "getPersonnel": return list(filtered(clone(mock.personnel), o), o.query);
+      case "getPersonnel": return list(filtered(clone(getAccounts()), o), o.query);
       case "getSettings": return clone(mock.settings);
       case "signOut": return  {
         ok: true
@@ -83,10 +123,7 @@
         ...clone(mock.settings), ...(o.body ||  {
         }        )
       }      ;
-      case "createPersonnel": return  {
-        ...(o.body ||  {
-        }        ), id: `p-${Date.now()}`
-      }      ;
+      case "createPersonnel": return addAccount(o.body || {});
       case "updatePersonnel": return clone(o.body);
       case "deletePersonnel": case "resetPersonnelPassword": case "overrideSlot": case "exportReport": return  {
         ok: true

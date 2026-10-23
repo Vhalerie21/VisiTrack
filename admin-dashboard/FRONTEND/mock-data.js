@@ -73,7 +73,7 @@ personnel: [ {
     }    ,  {
       id: "p-4", name: "L. Tan", email: "l.tan@plm.edu.ph", employeeId: "SEC-021", role: "guard", status: "active", lastLogin: iso("07:58")
     }    ,  {
-      id: "p-5", name: "E. Navarro", email: "e.navarro@plm.edu.ph", employeeId: "SEC-030", role: "disabled", status: "disabled", lastLogin: iso("18:02")
+      id: "p-5", name: "E. Navarro", email: "e.navarro@plm.edu.ph", employeeId: "SEC-030", role: "guard", status: "disabled", lastLogin: iso("18:02")
     }    ],
     settings:  {
       displayName: "J. Robles", overdueHours: 4, retention: "1 year", alertOverdue: true, dailySummary: true, alertSlots: false
