@@ -8,12 +8,18 @@
       content="Sign in to VisiTrack as an administrator or security staff member."
     >
     <title>VisiTrack | Staff Log-in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    >
     <link rel="stylesheet" href="../../main.css">
     <link rel="stylesheet" href="../../index.css">
     <link rel="stylesheet" href="LoginPage.css">
   </head>
   <body>
-    <div class="login-shell">
+    <div class="login-shell" id="login-page-content">
       <header class="login-header">
         <a class="back-link" href="../../index.html" aria-label="Back to home">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -73,6 +79,7 @@
           <label class="login-field">
             <span>Password</span>
             <input
+              id="login-password"
               name="password"
               type="password"
               autocomplete="current-password"
@@ -104,76 +111,156 @@
       </main>
     </div>
 
-    <script>
-      // Confirm these endpoints API with the back-end developer.
-      const API_URL = "/api/admin/login";
+    <!-- Mandatory first-login password change dialog. -->
+    <div class="password-dialog-backdrop" id="password-dialog-backdrop" hidden>
+      <section
+        class="password-dialog"
+        id="password-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="password-dialog-title"
+        aria-describedby="password-dialog-description"
+        tabindex="-1"
+      >
+        <span class="brand-mark password-dialog-brand" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none">
+            <rect x="6" y="8" width="34" height="31" rx="5"></rect>
+            <path d="M15 5v8M31 5v8M6 17h34"></path>
+            <circle cx="32" cy="32" r="10" fill="#31b99e"></circle>
+            <path d="M32 27v5l3.5 2.5"></path>
+          </svg>
+        </span>
+        <h2 id="password-dialog-title">Set your new password</h2>
+        <p id="password-dialog-description">
+          You're using a temporary password. Choose a new one to continue.
+        </p>
 
-      const role = new URLSearchParams(window.location.search).get("role");
-      const isSecurity = role === "security";
-      const REDIRECT_URL = isSecurity
-        ? "../../SecurityDB/Front-End/SecurityDB.html"
-        : "../../admin-dashboard/FRONTEND/dashboard.html";
-      const activeTab = document.getElementById(
-        isSecurity ? "security-tab" : "admin-tab"
-      );
-      const loginForm = document.querySelector(".login-form");
-      const loginError = document.getElementById("login-error");
-      const loginButton = document.getElementById("login-submit");
+        <form
+          class="password-change-form"
+          id="password-change-form"
+          aria-busy="false"
+          novalidate
+        >
+          <!-- Temporary password, new password, and live requirements. -->
+          <fieldset class="password-change-fields" id="password-change-fields">
+            <div class="password-field">
+              <label for="temporary-password">Temporary password</label>
+              <span class="password-input-wrap">
+                <input
+                  id="temporary-password"
+                  name="temporary-password"
+                  type="password"
+                  autocomplete="current-password"
+                  readonly
+                >
+                <button
+                  class="password-visibility"
+                  type="button"
+                  data-password-toggle="temporary-password"
+                  data-password-name="temporary password"
+                  aria-pressed="false"
+                  aria-label="Show temporary password"
+                >Show</button>
+              </span>
+            </div>
 
-      document.title = `VisiTrack | ${isSecurity ? "Security" : "Admin"} Log-in`;
-      document.getElementById("login-title").textContent =
-        `${isSecurity ? "Security" : "Admin"} Log-in`;
-      document.getElementById("login-subtitle").textContent = isSecurity
-        ? "Check visitors in and out at the gate."
-        : "Manage Users, Reports, and Audits.";
-      document.getElementById("identity-label").textContent =
-        `${isSecurity ? "Security" : "Admin"} ID or email`;
-      loginButton.textContent =
-        `Log in as ${isSecurity ? "Security" : "Admin"}`;
-      const defaultButtonText = loginButton.textContent.trim();
-      activeTab.classList.add("is-active");
-      activeTab.setAttribute("aria-current", "page");
+            <div class="password-field">
+              <label for="new-password">New password</label>
+              <span class="password-input-wrap">
+                <input
+                  id="new-password"
+                  name="new-password"
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                  aria-describedby="password-requirements strength-feedback"
+                >
+                <button
+                  class="password-visibility"
+                  type="button"
+                  data-password-toggle="new-password"
+                  data-password-name="new password"
+                  aria-pressed="false"
+                  aria-label="Show new password"
+                >Show</button>
+              </span>
+            </div>
 
-      loginForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        loginError.hidden = true;
-        loginError.textContent = "";
-        loginButton.disabled = true;
-        loginButton.textContent = "Logging in...";
+            <ul class="password-requirements" id="password-requirements" aria-live="polite">
+              <li data-requirement="length">
+                <span class="requirement-icon" aria-hidden="true"></span>
+                <span>At least 10 characters</span>
+                <span class="visually-hidden requirement-status">Not met</span>
+              </li>
+              <li data-requirement="uppercase">
+                <span class="requirement-icon" aria-hidden="true"></span>
+                <span>One uppercase letter</span>
+                <span class="visually-hidden requirement-status">Not met</span>
+              </li>
+              <li data-requirement="lowercase">
+                <span class="requirement-icon" aria-hidden="true"></span>
+                <span>One lowercase letter</span>
+                <span class="visually-hidden requirement-status">Not met</span>
+              </li>
+              <li data-requirement="number">
+                <span class="requirement-icon" aria-hidden="true"></span>
+                <span>At least one number</span>
+                <span class="visually-hidden requirement-status">Not met</span>
+              </li>
+              <li data-requirement="different">
+                <span class="requirement-icon" aria-hidden="true"></span>
+                <span>Different from the temporary password</span>
+                <span class="visually-hidden requirement-status">Not met</span>
+              </li>
+            </ul>
 
-        try {
-          const credentials = {
-            identity: loginForm.elements.namedItem("identity").value,
-            password: loginForm.elements.namedItem("password").value,
-            remember: loginForm.elements.namedItem("remember").checked,
-          };
-          const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify(credentials),
-          });
+            <!-- Strength feedback, confirmation, and save status. -->
+            <div class="password-strength" id="strength-feedback" aria-live="polite">
+              <div class="strength-meter" id="strength-meter" role="img" aria-label="Strength not entered">
+                <span></span><span></span><span></span><span></span>
+              </div>
+              <span class="strength-label">Strength: <span id="strength-label">—</span></span>
+            </div>
 
-          if (response.status === 200) {
-            window.location.assign(REDIRECT_URL);
-          } else if (response.status === 401) {
-            loginError.textContent = "Wrong ID/email or password.";
-            loginError.hidden = false;
-          } else if (response.status === 429) {
-            loginError.textContent = "Too many attempts. Try again later.";
-            loginError.hidden = false;
-          } else {
-            loginError.textContent = "Something went wrong. Please try again.";
-            loginError.hidden = false;
-          }
-        } catch {
-          loginError.textContent = "Something went wrong. Please try again.";
-          loginError.hidden = false;
-        } finally {
-          loginButton.disabled = false;
-          loginButton.textContent = defaultButtonText;
-        }
-      });
-    </script>
+            <div class="password-field">
+              <label for="confirm-password">Confirm new password</label>
+              <span class="password-input-wrap">
+                <input
+                  id="confirm-password"
+                  name="confirm-password"
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                  aria-invalid="false"
+                  aria-describedby="confirm-error"
+                >
+                <button
+                  class="password-visibility"
+                  type="button"
+                  data-password-toggle="confirm-password"
+                  data-password-name="confirm password"
+                  aria-pressed="false"
+                  aria-label="Show confirm password"
+                >Show</button>
+              </span>
+            </div>
+            <p class="password-error confirm-error" id="confirm-error" role="alert" hidden>
+              Passwords do not match
+            </p>
+            <p class="password-error" id="password-change-error" role="alert" hidden></p>
+            <p class="password-success" id="password-change-success" role="status" hidden>
+              Password updated
+            </p>
+            <button class="password-save" id="password-save" type="submit" disabled>
+              Save new password
+            </button>
+          </fieldset>
+        </form>
+
+        <a class="password-logout" id="password-logout" href="#">Log out</a>
+      </section>
+    </div>
+
+    <script src="LoginPage.js"></script>
   </body>
 </html>
